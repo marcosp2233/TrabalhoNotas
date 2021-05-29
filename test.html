@@ -8,7 +8,33 @@
 <body>
     <script>
 
-        
+let matriz;
+
+        let menu = "1) Cadastramento de aluno\n2) Editar as informações do aluno\n3) Cadastre as notas do aluno\n4) Lista de alunos\n0) Sair"
+
+        lacoPrincipal:
+        while (true) {
+            switch (+prompt("Escolha uma opção: \n" + menu)) {
+                case 0:
+                    break lacoPrincipal;
+                case 1:
+                    cadastro(prompt("Digite o nome do aluno"), prompt("Digite a sua matrícula"))
+                    break
+                case 2:
+                    edição(prompt("Digite a sua matrícula "), prompt("Digite o nome do novo aluno"))
+                    break
+                    case 3:
+                    let notas = [+prompt("Digite a nota 1"), +prompt("Digite a nota 2"), +prompt("Digite a nota 3")]
+                    cadastramentoDeNotas(notas, prompt("Digite a matrícula"))
+                    break
+                case 4:
+                    listaDeAlunos()
+                    alert("Veja no console")
+                    break
+        }
+    }
+
+
 function cadastramentoDeNotas(notas, matricula) {
     for (let i = 0; i < matriz.length; i++) {
         if (matriz[i][1] == matricula) {
