@@ -8,7 +8,27 @@
 <body>
     <script>
 
-         
+        
+function cadastramentoDeNotas(notas, matricula) {
+    for (let i = 0; i < matriz.length; i++) {
+        if (matriz[i][1] == matricula) {
+            matriz[i][2] = notas[0]
+            matriz[i][3] = notas[1]
+            matriz[i][4] = notas[2]
+            matriz[i][5] = ((notas[0] + notas[1] + notas[2]) / 3).toFixed(2)
+        }
+    }
+}
+
+function Aluno(matricula, nome, nota1, nota2, nota3, media) {
+    this.matricula = matricula
+    this.nome = nome
+    this.nota1 = nota1
+    this.nota2 = nota2
+    this.nota3 = nota3
+    this.media = media
+}
+
 
     </script>
 </body>
