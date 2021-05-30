@@ -8,9 +8,9 @@
 <body>
     <script>
 
-let matriz;
+ let matriz;
 
-        let menu = "1) Cadastramento de aluno\n2) Editar as informações do aluno\n3) Cadastre as notas do aluno\n4) Lista de alunos\n0) Sair"
+ let menu = "1) Cadastramento de aluno\n2) Editar as informações do aluno\n3) Cadastre as notas do aluno\n4) Lista de alunos\n0) Sair"
 
         lacoPrincipal:
         while (true) {
@@ -34,27 +34,67 @@ let matriz;
         }
     }
 
+function edição(matricula, nome) {
 
-function cadastramentoDeNotas(notas, matricula) {
     for (let i = 0; i < matriz.length; i++) {
         if (matriz[i][1] == matricula) {
-            matriz[i][2] = notas[0]
-            matriz[i][3] = notas[1]
-            matriz[i][4] = notas[2]
-            matriz[i][5] = ((notas[0] + notas[1] + notas[2]) / 3).toFixed(2)
+            matriz[i][0] = nome
+            return alert("O aluno foi alterado!")
         }
     }
+    return alert("Erro: Matrícula não encontrada!")
 }
+
+function cadastro(nome, matricula) {
+    if (matriz == undefined) {
+        matriz = []
+        matriz[0] = []
+    } else {
+        for (let i = 0; i < matriz.length; i++) {
+            if (matriz[i][1] == matricula) {
+                return alert("Erro: Já existe um aluno com esta matrícula.")
+            }
+        }
+        matriz[matriz.length] = []
+    }
+    matriz[matriz.length - 1][0] = nome
+    matriz[matriz.length - 1][1] = matricula
+}     
+      
+function cadastramentoDeNotas(notas, matricula) {
+ 
+ for (let i = 0; i < matriz.length; i++) {
+                if (matriz[i][1] == matricula) {
+                    matriz[i][2] = notas[0]
+                    matriz[i][3] = notas[1]
+                    matriz[i][4] = notas[2]
+                    matriz[i][5] = ((notas[0] + notas[1] + notas[2]) / 3).toFixed(2)
+                }
+            }
+        } 
 
 function Aluno(matricula, nome, nota1, nota2, nota3, media) {
-    this.matricula = matricula
-    this.nome = nome
-    this.nota1 = nota1
-    this.nota2 = nota2
-    this.nota3 = nota3
-    this.media = media
+            this.matricula = matricula
+            this.nome = nome
+            this.nota1 = nota1
+            this.nota2 = nota2
+            this.nota3 = nota3
+            this.media = media
+        }
+  
+function listaDeAlunos() {
+    let alunos = []
+    for (let i = 0; i < matriz.length; i++) {
+        alunos[i] = new Aluno()
+        alunos[i].nome = matriz[i][0]
+        alunos[i].matricula = matriz[i][1]
+        alunos[i].nota1 = matriz[i][2]
+        alunos[i].nota2 = matriz[i][3]
+        alunos[i].nota3 = matriz[i][4]
+        alunos[i].media = matriz[i][5]
+    }
+    console.table(alunos)
 }
-
 
     </script>
 </body>
