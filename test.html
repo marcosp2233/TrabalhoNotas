@@ -8,8 +8,34 @@
 <body>
     <script>
 
+ let matriz;
+
+ let menu = "1) Cadastramento de aluno\n2) Editar as informações do aluno\n3) Cadastre as notas do aluno\n4) Lista de alunos\n0) Sair"
+
+        lacoPrincipal:
+        while (true) {
+            switch (+prompt("Escolha uma opção: \n" + menu)) {
+                case 0:
+                    break lacoPrincipal;
+                case 1:
+                    cadastro(prompt("Digite o nome do aluno"), prompt("Digite a sua matrícula"))
+                    break
+                case 2:
+                    edição(prompt("Digite a sua matrícula "), prompt("Digite o nome do novo aluno"))
+                    break
+                case 3:
+                    let notas = [+prompt("Digite a nota 1"), +prompt("Digite a nota 2"), +prompt("Digite a nota 3")]
+                    cadastramentoDeNotas(notas, prompt("Digite a matrícula"))
+                    break
+                case 4:
+                    listaDeAlunos()
+                    alert("Veja no console")
+                    break
+        }
+    }
 
 function edição(matricula, nome) {
+
     for (let i = 0; i < matriz.length; i++) {
         if (matriz[i][1] == matricula) {
             matriz[i][0] = nome
@@ -33,8 +59,42 @@ function cadastro(nome, matricula) {
     }
     matriz[matriz.length - 1][0] = nome
     matriz[matriz.length - 1][1] = matricula
-}
+}     
+      
+function cadastramentoDeNotas(notas, matricula) {
+ 
+ for (let i = 0; i < matriz.length; i++) {
+                if (matriz[i][1] == matricula) {
+                    matriz[i][2] = notas[0]
+                    matriz[i][3] = notas[1]
+                    matriz[i][4] = notas[2]
+                    matriz[i][5] = ((notas[0] + notas[1] + notas[2]) / 3).toFixed(2)
+                }
+            }
+        } 
 
+function Aluno(matricula, nome, nota1, nota2, nota3, media) {
+            this.matricula = matricula
+            this.nome = nome
+            this.nota1 = nota1
+            this.nota2 = nota2
+            this.nota3 = nota3
+            this.media = media
+        }
+  
+function listaDeAlunos() {
+    let alunos = []
+    for (let i = 0; i < matriz.length; i++) {
+        alunos[i] = new Aluno()
+        alunos[i].nome = matriz[i][0]
+        alunos[i].matricula = matriz[i][1]
+        alunos[i].nota1 = matriz[i][2]
+        alunos[i].nota2 = matriz[i][3]
+        alunos[i].nota3 = matriz[i][4]
+        alunos[i].media = matriz[i][5]
+    }
+    console.table(alunos)
+}
 
     </script>
 </body>
